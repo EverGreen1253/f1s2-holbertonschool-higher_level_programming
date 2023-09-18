@@ -13,4 +13,4 @@ if last > 5:
 elif last < 6 and last != 0:
     print(f"{front} and is less than 6 and not 0")
 else:
-    print(f"{front} and is zero")
+    print(f"{front} and is 0")
