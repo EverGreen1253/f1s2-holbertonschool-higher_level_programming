@@ -4,7 +4,7 @@ number = random.randint(-10000, 10000)
 last = number % 10
 
 if number < 0:
-    last = 10 - last
+    last = (10 - last) * -1
 
 front = f"Last digit of {number} is {last}"
 
