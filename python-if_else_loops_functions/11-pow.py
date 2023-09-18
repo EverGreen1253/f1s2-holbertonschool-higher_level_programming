@@ -7,12 +7,17 @@ def pow(a, b):
         c = 1 / a
         for x in range((b * -1) - 1):
             c = c * 1 / a
+        final = str(c)
+        if 'e' in final:
+            return "{0:.15e}".format(c)
         return c
     else:
         c = a
         for x in range(b - 1):
             c = c * a
+        final = str(c)
+        if 'e' in final:
+            return "{0:.15e}".format(c)
         return c
 
     return None
-            
