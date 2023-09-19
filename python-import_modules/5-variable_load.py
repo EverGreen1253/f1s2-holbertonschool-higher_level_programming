@@ -3,4 +3,3 @@ if __name__ == "__main__":
     import variable_load_5 as load
 
     print(load.a)
-    
