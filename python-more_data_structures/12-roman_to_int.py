@@ -22,7 +22,13 @@ def roman_to_int(roman_string):
         elif c == 'V':
             total = total + 5
         elif c == 'X':
-            total = total + 10
+            if (i + 1) < len(roman_string):
+                if roman_string[i + 1] == 'C' or roman_string[i + 1] == 'D':
+                    total = total - 10
+                else:
+                    total = total + 10
+            else:
+                total = total + 10
         elif c == 'L':
             total = total + 50
         elif c == 'C':
