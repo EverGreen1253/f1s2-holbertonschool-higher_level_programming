@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 def print_matrix_integer(matrix=[[]]):
-    """removes c or C from the string."""
+    """Prints out a matrix (2d array)."""
 
     if len(matrix) == 0:
         return None
