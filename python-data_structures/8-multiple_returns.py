@@ -2,11 +2,11 @@
 def multiple_returns(sentence):
     """returns a tuple with string length and first char."""
 
-    l = 0
-    c = None
+    str_length = 0
+    first_char = None
     if sentence != '':
         str_list = list(sentence)
-        l = len(str_list)
-        c = str_list[0]
+        str_length = len(str_list)
+        first_char = str_list[0]
 
-    return (l, c)
+    return (str_length, first_char)
