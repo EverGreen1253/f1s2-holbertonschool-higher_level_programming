@@ -9,7 +9,10 @@ def print_matrix_integer(matrix=[[]]):
     while i < len(matrix):
         j = 0
         while j < len(matrix[i]):
-            print("{:d} ".format(matrix[i][j]), end="")
+            if j != 0:
+                print(" ")
+
+            print("{:d}".format(matrix[i][j]), end="")
             j = j + 1
         print("")
         i = i + 1
