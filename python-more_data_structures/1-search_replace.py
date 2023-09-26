@@ -3,7 +3,7 @@ def search_replace(my_list, search, replace):
     """Search and destroy."""
 
     if len(my_list) == 0:
-        return None
+        return []
 
     new_list = [None] * len(my_list)
 
