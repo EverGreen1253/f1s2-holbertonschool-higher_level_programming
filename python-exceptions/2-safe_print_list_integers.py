@@ -4,11 +4,14 @@ def safe_print_list_integers(my_list=[], x=0):
 
     str_len = 0
     for i in my_list:
-        str_len = i
+        str_len = str_len + 1
 
     count = 0
     try:
         for i in range(x):
+            if i >= str_len:
+                raise IndexError('list index out of range')
+
             if type(my_list[i]) is int:
                 print("{:d}".format(my_list[i]), end="")
                 count = count + 1
