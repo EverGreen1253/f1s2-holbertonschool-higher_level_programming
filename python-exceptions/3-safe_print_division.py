@@ -5,11 +5,11 @@ def safe_print_division(a, b):
     result = None
     try:
         if b == 0:
-            print ("Inside result: None")
+            print("Inside result: None")
         else:
             result = a / b
-            print ("Inside result: {0}".format(result))
-    except:
+            print("Inside result: {0}".format(result))
+    except ValueError:
         raise
     finally:
         return result
