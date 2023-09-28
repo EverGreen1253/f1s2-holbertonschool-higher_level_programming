@@ -17,8 +17,8 @@ def list_division(my_list_1, my_list_2, list_length):
             t_1 = type(my_list_1[i])
             t_2 = type(my_list_2[i])
 
-            if (t_1 is not int and t_1 is not float) \
-            or (t_2 is not int and t_2 is not float):
+            if ((t_1 is not int and t_1 is not float)
+                or (t_2 is not int and t_2 is not float)):
                 raise TypeError
             elif my_list_2[i] == 0:
                 raise ValueError
