@@ -6,8 +6,6 @@ def safe_print_list(my_list=[], x=0):
     for i in my_list:
         str_len = i
 
-    print(str_len)
-
     max_len = x
     if x > str_len:
         max_len = str_len
