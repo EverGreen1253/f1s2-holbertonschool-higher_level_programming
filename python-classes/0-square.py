@@ -1,3 +1,11 @@
 #!/usr/bin/python3
 class Square:
-    """A square."""
+    """A square.
+
+    Args:
+        None
+
+    Returns:
+        Nothing
+
+    """
