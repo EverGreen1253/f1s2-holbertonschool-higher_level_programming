@@ -28,7 +28,10 @@ class Square:
         try:
             if (isinstance(position, tuple) is not True
                     or isinstance(position[0], int) is not True
-                    or isinstance(position[1], int) is not True):
+                    or isinstance(position[1], int) is not True
+                    or position[0] < 0
+                    or position[1] < 0
+                    ):
                 raise TypeError("position must be a tuple of 2 positive integers")
         except IndexError:
             raise TypeError("position must be a tuple of 2 positive integers")
@@ -113,7 +116,10 @@ class Square:
         try:
             if (isinstance(value, tuple) is not True
                     or isinstance(value[0], int) is not True
-                    or isinstance(value[1], int) is not True):
+                    or isinstance(value[1], int) is not True
+                    or value[0] < 0
+                    or value[1] < 0
+                    ):
                 raise TypeError("position must be a tuple of 2 positive integers")
         except IndexError:
             raise TypeError("position must be a tuple of 2 positive integers")
