@@ -14,11 +14,11 @@ class Square:
 
     """
 
-    length = 0
+    # length = 0
     __size = 0
 
     def __init__(self, length):
-        self.length = length
+        # self.length = length
         self.__size = length * length
 
     # def size(self):
