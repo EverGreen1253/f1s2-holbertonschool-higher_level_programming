@@ -23,15 +23,16 @@ class Square:
         if size < 0:
             raise ValueError('size must be >= 0')
 
-        if (isinstance(position, tuple) is not True
-                or isinstance(position[0], int) is not True
-                or isinstance(position[1], int) is not True
-                or position[0] is None
-                or position[1] is None
-                ):
+        self.__size = size
+
+        try:
+            if (isinstance(position, tuple) is not True
+                    or isinstance(position[0], int) is not True
+                    or isinstance(position[1], int) is not True):
+                raise TypeError("position must be a tuple of 2 positive integers")
+        except IndexError:
             raise TypeError("position must be a tuple of 2 positive integers")
 
-        self.__size = size
         self.__position = position
 
     def area(self):
@@ -109,12 +110,12 @@ class Square:
                 Nothing
         """
 
-        if (isinstance(value, tuple) is not True
-                or isinstance(value[0], int) is not True
-                or isinstance(value[1], int) is not True
-                or value[0] is None
-                or value[1] is None
-                ):
+        try:
+            if (isinstance(value, tuple) is not True
+                    or isinstance(value[0], int) is not True
+                    or isinstance(value[1], int) is not True):
+                raise TypeError("position must be a tuple of 2 positive integers")
+        except IndexError:
             raise TypeError("position must be a tuple of 2 positive integers")
 
         self.__position = value
