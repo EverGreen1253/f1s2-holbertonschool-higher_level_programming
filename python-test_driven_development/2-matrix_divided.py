@@ -25,7 +25,7 @@ def matrix_divided(matrix, div):
             raise TypeError("Each row of the matrix must have the same size")
 
         for j in range(len(new_matrix[i])):
-            if (isinstance(new_matrix[i][j], int) is not True and 
+            if (isinstance(new_matrix[i][j], int) is not True and
                     isinstance(new_matrix[i][j], float) is not True):
                 raise TypeError(mat_err)
 
