@@ -17,11 +17,15 @@ Tests:
 
     Test - first_name= string / last_name= not string => TypeError: last_name must be a string
     >>> smn("Bob", 43)
-    last_name must be a string
+    Traceback (most recent call last):
+    ...
+    TypeError: last_name must be a string
 
     Test - first_name= not string / last_name= string => TypeError: first_name must be a string
     >>> smn(34, "Ross")
-    first_name must be a string
+    Traceback (most recent call last):
+    ...
+    TypeError: first_name must be a string
 
     Test - missing two arguments
     >>> smn()
