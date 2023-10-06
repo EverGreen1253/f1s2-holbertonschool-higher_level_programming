@@ -15,19 +15,10 @@ def add_integer(a, b=98):
         int: sum of a and b
     """
 
-    one = a
-    two = b
-
-    if isinstance(one, float) is True:
-        one = int(one)
-
-    if isinstance(two, float) is True:
-        two = int(two)
-
-    if isinstance(one, int) is not True:
+    if a is None or (type(a) is not int and type(a) is not float):
         raise TypeError("a must be an integer")
 
-    if isinstance(two, int) is not True:
+    if b is None or (type(b) is not int and type(b) is not float):
         raise TypeError("b must be an integer")
 
-    return one + two
+    return int(a) + int(b)
