@@ -4,6 +4,7 @@ The ``add_integer`` module
 Using ``add_integer``
 -------------------
 
+
 First import ``add_integer`` from the ``0-add_integer`` file:
 
     >>> add = __import__('0-add_integer').add_integer
@@ -16,12 +17,38 @@ Tests:
     >>> add(3.4, 1.2)
     4
 
+    Test - a is not int
     >>> add("haha", 1)
     Traceback (most recent call last):
     ...
     TypeError: a must be an integer
 
+    Test - b is not int
     >>> add(1, "haha")
     Traceback (most recent call last):
     ...
     TypeError: b must be an integer
+
+    Test - result is infinity and there is float overflow
+    >>> add(1, float("inf"))
+    Traceback (most recent call last):
+    ...
+    OverflowError: cannot convert float infinity to integer
+
+    Test - cannot convert NaN to int
+    >>> add(1, float("nan"))
+    Traceback (most recent call last):
+    ...
+    ValueError: cannot convert float NaN to integer
+
+    Test - missing one argument
+    >>> add(None)
+    Traceback (most recent call last):
+    ...
+    TypeError: a must be an integer
+
+    Test - missing both arguments
+    >>> add(None, None)    
+    Traceback (most recent call last):
+    ...
+    TypeError: a must be an integer
