@@ -1,0 +1,12 @@
+The ``say_my_name`` module
+======================
+
+Using ``say_my_name``
+-------------------
+
+
+First import ``say_my_name`` from the ``3-say_my_name`` file:
+
+    >>> smn = __import__('3-say_my_name').say_my_name
+
+Tests:
