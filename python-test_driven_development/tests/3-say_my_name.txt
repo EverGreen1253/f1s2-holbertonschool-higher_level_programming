@@ -10,3 +10,21 @@ First import ``say_my_name`` from the ``3-say_my_name`` file:
     >>> smn = __import__('3-say_my_name').say_my_name
 
 Tests:
+
+    Test - first_name= string / last_name= string
+    >>> smn("Bob", "Ross")
+    My name is Bob Ross
+
+    Test - first_name= string / last_name= not string => TypeError: last_name must be a string
+    >>> smn("Bob", 43)
+    last_name must be a string
+
+    Test - first_name= not string / last_name= string => TypeError: first_name must be a string
+    >>> smn(34, "Ross")
+    first_name must be a string
+
+    Test - missing two arguments
+    >>> smn()
+    Traceback (most recent call last):
+    ...
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'
