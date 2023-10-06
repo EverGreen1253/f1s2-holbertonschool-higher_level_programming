@@ -1,0 +1,15 @@
+The ``matrix_divided`` module
+======================
+
+Using ``matrix_divided``
+-------------------
+
+
+First import ``matrix_divided`` from the ``2-matrix_divided`` file:
+
+    >>> div = __import__('2-matrix_divided').matrix_divided
+
+Tests:
+    >>> mat = [[2, 4],[6, 8]]
+    >>> print(div(mat, 2))
+    [[1.0, 2.0], [3.0, 4.0]]
