@@ -13,3 +13,44 @@ Tests:
     >>> mat = [[2, 4],[6, 8]]
     >>> print(div(mat, 2))
     [[1.0, 2.0], [3.0, 4.0]]
+
+    Test - matrix= List of Lists of integers / div= string
+    >>> print(div(mat, "haha"))
+    Traceback (most recent call last):
+    ...
+    TypeError: div must be a number
+
+    Test - matrix= List of Lists of integers / div= 0 => ZeroDivisionError: division by zero
+    >>> print(div(mat, 0))
+    Traceback (most recent call last):
+    ...
+    ZeroDivisionError: division by zero
+
+    Test - matrix= not a list of lists of integers / div= integer => TypeError matrix must be a matrix (list of lists) of integers/floats
+    >>> mat = ["haha", "hoho"]]
+    >>> print(div(mat, 2))
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    Test - matrix= list of lists of integers but not rectangular / div= integer => TypeError: matrix must have each row with the same size
+    >>> mat = [[1,2,3],[1,2]]
+    >>> print(div(mat, 2))
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix must have each row with the same size
+
+    Test - matrix= list of lists of integers / div= float(inf) => all values == 0.0
+    >>> mat = [[2, 4],[6, 8]]
+    >>> print(div(mat, float("inf")))
+    [[0.0, 0.0], [0.0, 0.0]]
+
+    Test - missing one argument
+    >>> print(div(mat))
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+    Test - missing 2 arguments
+    >>> print()
+    <BLANKLINE>
