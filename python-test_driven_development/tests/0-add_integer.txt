@@ -42,13 +42,11 @@ Tests:
     ValueError: cannot convert float NaN to integer
 
     Test - missing one argument
-    >>> add(None)
-    Traceback (most recent call last):
-    ...
-    TypeError: a must be an integer
+    >>> add(1)
+    99
 
     Test - missing both arguments
-    >>> add(None, None)    
+    >>> add()    
     Traceback (most recent call last):
     ...
-    TypeError: a must be an integer
+    TypeError: add_integer() missing 1 required positional argument: 'a'
