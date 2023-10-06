@@ -18,6 +18,9 @@ class TestMaxInteger(unittest.TestCase):
     def test_negative_exists(self):
         self.assertLessEqual(max_integer([-1, -2, -3]), 0)
 
+    def test_only_one(self):
+        self.assertEqual(max_integer([100]), 100)
+
     def test_empty(self):
         self.assertEqual(max_integer([]), None)
 
