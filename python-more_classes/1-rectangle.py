@@ -37,7 +37,7 @@ class Rectangle:
                 Nothing
         """
 
-        if isinstance(self.__width, int) is not True:
+        if isinstance(value, int) is not True:
             raise TypeError("width must be an integer")
 
         if value < 0:
@@ -62,7 +62,7 @@ class Rectangle:
                 Nothing
         """
 
-        if isinstance(self.__height, int) is not True:
+        if isinstance(value, int) is not True:
             raise TypeError("height must be an integer")
 
         if value < 0:
