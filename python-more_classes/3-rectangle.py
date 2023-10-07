@@ -97,9 +97,15 @@ class Rectangle:
                 printable string of rectangle shape
         """
         self.__s = ""
+
+        if self.__width == 0 or self.__height == 0:
+            return ""
+
         for i in range(self.__height):
             for j in range(self.__width):
                 self.__s = self.__s + "#"
-            self.__s = self.__s + "\n"
+            
+            if i != self.__height - 1:
+                self.__s = self.__s + "\n"
 
         return self.__s
