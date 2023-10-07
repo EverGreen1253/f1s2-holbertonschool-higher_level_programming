@@ -104,7 +104,7 @@ class Rectangle:
         for i in range(self.__height):
             for j in range(self.__width):
                 self.__s = self.__s + "#"
-            
+
             if i != self.__height - 1:
                 self.__s = self.__s + "\n"
 
