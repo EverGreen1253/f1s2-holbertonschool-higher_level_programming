@@ -3,6 +3,6 @@
 
 
 def is_kind_of_class(obj, a_class):
-    """returns true / false depending on whether obj is a subclass of a_class."""
+    """returns true / false if obj is a subclass of a_class or not."""
 
     return issubclass(type(obj), a_class)
