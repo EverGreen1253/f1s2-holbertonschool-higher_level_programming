@@ -5,85 +5,83 @@ Using ``BaseGeometry``
 -------------------
 
 
-First import everything from the ``7-base_geometry`` file:
+First import the class from the ``7-base_geometry`` file:
 
-    >>> bg = __import__('7-base_geometry').BaseGeometry
-    >>> area = bg.area
-    >>> iv = bg.integer_validator
+    >>> bg = __import__('7-base_geometry').BaseGeometry()
 
 Tests:
 
-    Test - confirm the type of bg
-    >>> type(bg)
-    <class 'type'>
+    Test - bg is an instance of BaseGeometry
+    >>> bg.__class__
+    <class '7-base_geometry.BaseGeometry'>
 
     Test - bg is an instance of BaseGeometry
-    >>> bg.__name__
+    >>> bg.__class__.__name__
     'BaseGeometry'
 
     Test - area will throw an Exception
-    >>> area(bg)
+    >>> bg.area()
     Traceback (most recent call last):
     ...
     Exception: area() is not implemented
 
     Test - name is not an int
-    >>> iv(bg, "name", "haha")
+    >>> bg.iv("name", "haha")
     Traceback (most recent call last):
     ...
     TypeError: name must be an integer
 
     Test - age is more than 0
-    >>> iv(bg, "age", 1)
+    >>> bg.iv("age", 1)
 
     Test - age is exactly 0
-    >>> iv(bg, "age", 0)
+    >>> bg.iv("age", 0)
     Traceback (most recent call last):
     ...
     ValueError: age must be greater than 0
 
     Test - age is less than 0
-    >>> iv(bg, "age", -100)
+    >>> bg.iv("age", -100)
     Traceback (most recent call last):
     ...
     ValueError: age must be greater than 0
 
     Test - age value is tuple
-    >>> iv(bg, "age", (4,))
+    >>> bg.iv("age", (4,))
     Traceback (most recent call last):
     ...
     TypeError: age must be an integer
 
     Test - age value is list
-    >>> iv(bg, "age", [3])
+    >>> bg.iv("age", [3])
     Traceback (most recent call last):
     ...
     TypeError: age must be an integer
 
     Test - age value is Boolean
-    >>> iv(bg, "age", True)
+    >>> bg.iv("age", True)
     Traceback (most recent call last):
     ...
     TypeError: age must be an integer
 
     Test - age value is an assoc array
-    >>> iv(bg, "age", {3, 4})
+    >>> bg.iv("age", {3, 4})
     Traceback (most recent call last):
     ...
     TypeError: age must be an integer
 
     Test - age value is None
-    >>> iv(bg, "age", None)
+    >>> bg.iv("age", None)
     Traceback (most recent call last):
     ...
     TypeError: age must be an integer
 
-    >>> iv(bg, "age")
+    >>> bg.iv("age")
     Traceback (most recent call last):
     ...
     TypeError: integer_validator() missing 1 required positional argument: 'value'
 
-    >>> iv(bg)
+    >>> bg.iv()
     Traceback (most recent call last):
     ...
     TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
