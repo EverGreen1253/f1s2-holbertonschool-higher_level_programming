@@ -1,0 +1,42 @@
+The ``BaseGeometry`` module
+======================
+
+Using ``BaseGeometry``
+-------------------
+
+
+First import everything from the ``7-base_geometry`` file:
+
+    >>> bg = __import__('7-base_geometry').BaseGeometry
+    >>> area = bg.area
+    >>> iv = bg.integer_validator
+
+Tests:
+
+    Test - area will throw an Exception
+    >>> area(bg)
+    Traceback (most recent call last):
+    ...
+    Exception: area() is not implemented
+
+    Test - name is not an int
+    >>> iv(bg, "name", "haha")
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+
+    Test - age is less than 0
+    >>> iv(bg, "age", -100)
+    Traceback (most recent call last):
+    ...
+    ValueError: age must be greater than 0
+
+    >>> iv(bg, "age")
+    Traceback (most recent call last):
+    ...
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+    >>> iv(bg)
+    Traceback (most recent call last):
+    ...
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
