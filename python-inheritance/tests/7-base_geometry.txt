@@ -13,6 +13,10 @@ First import everything from the ``7-base_geometry`` file:
 
 Tests:
 
+    Test - bg is an instance of BaseGeometry
+    >>> bg.__name__
+    'BaseGeometry'
+
     Test - area will throw an Exception
     >>> area(bg)
     Traceback (most recent call last):
@@ -25,11 +29,51 @@ Tests:
     ...
     TypeError: name must be an integer
 
+    Test - age is more than 0
+    >>> iv(bg, "age", 1)
+    <BLANKLINE>
+
+    Test - age is exactly 0
+    >>> iv(bg, "age", 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: age must be greater than 0
+
     Test - age is less than 0
     >>> iv(bg, "age", -100)
     Traceback (most recent call last):
     ...
     ValueError: age must be greater than 0
+
+    Test - age value is tuple
+    >>> iv(bg, "age", (4,))
+    Traceback (most recent call last):
+    ...
+    TypeError: age must be an integer
+
+    Test - age value is list
+    >>> iv(bg, "age", [3])
+    Traceback (most recent call last):
+    ...
+    TypeError: age must be an integer
+
+    Test - age value is Boolean
+    >>> iv(bg, "age", True)
+    Traceback (most recent call last):
+    ...
+    TypeError: age must be an integer
+
+    Test - age value is an assoc array
+    >>> iv(bg, "age", {3, 4})
+    Traceback (most recent call last):
+    ...
+    TypeError: age must be an integer
+
+    Test - age value is None
+    >>> iv(bg, "age", None)
+    Traceback (most recent call last):
+    ...
+    TypeError: age must be an integer
 
     >>> iv(bg, "age")
     Traceback (most recent call last):
@@ -40,3 +84,4 @@ Tests:
     Traceback (most recent call last):
     ...
     TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
