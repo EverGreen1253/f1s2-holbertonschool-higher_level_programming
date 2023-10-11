@@ -31,7 +31,6 @@ Tests:
 
     Test - age is more than 0
     >>> iv(bg, "age", 1)
-    <BLANKLINE>
 
     Test - age is exactly 0
     >>> iv(bg, "age", 0)
