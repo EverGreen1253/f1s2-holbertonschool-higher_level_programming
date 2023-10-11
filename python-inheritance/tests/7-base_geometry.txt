@@ -13,6 +13,10 @@ First import everything from the ``7-base_geometry`` file:
 
 Tests:
 
+    Test - confirm the type of bg
+    >>> type(bg)
+    <class 'type'>
+
     Test - bg is an instance of BaseGeometry
     >>> bg.__name__
     'BaseGeometry'
