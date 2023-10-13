@@ -21,7 +21,6 @@ def pascal_triangle(n):
         value = 1
         for j in range(i + 1):
             if i > 0:
-                #check prev row
                 if len(triangle[i - 1]) >= (j + 1) and j != 0:
                     value = triangle[i - 1][j] + triangle[i - 1][j - 1]
                 else:
