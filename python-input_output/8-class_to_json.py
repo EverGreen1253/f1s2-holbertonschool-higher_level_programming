@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Module docstring goes here"""
-import json
 
 
 def class_to_json(obj):
