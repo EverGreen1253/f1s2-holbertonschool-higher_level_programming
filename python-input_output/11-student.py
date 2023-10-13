@@ -57,6 +57,7 @@ class Student:
                 str: json version of class dict
         """
 
-        self.first_name = json["first_name"]
-        self.last_name = json["last_name"]
-        self.age = json["age"]
+        if len(json) != 0:
+            self.first_name = json["first_name"]
+            self.last_name = json["last_name"]
+            self.age = json["age"]
