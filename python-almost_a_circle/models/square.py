@@ -73,3 +73,11 @@ class Square(Rectangle):
         elif len(kwargs) > 0:
             for key in kwargs:
                 setattr(self, key, kwargs[key])
+
+    def to_dictionary(self):
+        """Converts the class to a dictionary.
+
+            Returns:
+                dictionary format for the class
+        """
+        return (dict(id=self.id, x=self.x, size=self.width, y=self.y))
