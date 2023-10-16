@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Nameless module for Base class """
-
+import json
 
 class Base:
     """A Base class.
@@ -31,4 +31,4 @@ class Base:
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         else:
-            return str(list_dictionaries)
+            return str(json.dumps(list_dictionaries))
