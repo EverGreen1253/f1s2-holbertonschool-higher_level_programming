@@ -189,4 +189,5 @@ class Rectangle(Base):
             Returns:
                 dictionary format for the class
         """
-        return dict(x=self.x, y=self.y, id=self.id, height=self.height, width=self.width)
+        return (dict(x=self.x, y=self.y, id=self.id, 
+                     height=self.height, width=self.width))
