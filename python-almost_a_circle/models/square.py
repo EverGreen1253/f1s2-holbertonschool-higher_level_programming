@@ -25,5 +25,5 @@ class Square(Rectangle):
             Returns:
                 nothing
         """
-        return ("[Square] ({0}) {1}/{2} - {3}/{4}"
-                .format(self.id, self.x, self.y, self.width, self.width))
+        return ("[Square] ({0}) {1}/{2} - {3}"
+                .format(self.id, self.x, self.y, self.width))
