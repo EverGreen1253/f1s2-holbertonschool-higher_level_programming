@@ -25,3 +25,10 @@ class Base:
 
     def __str__(self):
         return self.id
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        if list_dictionaries is None or len(list_dictionaries) == 0:
+            return "[]"
+        else:
+            return str(list_dictionaries)
