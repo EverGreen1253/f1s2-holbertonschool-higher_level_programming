@@ -27,7 +27,12 @@ class Rectangle(Base):
         self.y = y
 
     def __str__(self):
-        return self.id
+        """Prints textual representation of shape dimensions.
+
+            Returns:
+                nothing
+        """
+        return "[Rectangle] ({0}) {1}/{2} - {3}/{4}".format(self.id, self.x, self.y, self.width, self.height)
 
     @property
     def width(self):
