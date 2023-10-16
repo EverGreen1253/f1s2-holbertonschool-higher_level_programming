@@ -150,7 +150,13 @@ class Rectangle(Base):
                 nothing
         """
 
+        for yw in range(self.y):
+            print("")
+
         for h in range(self.height):
+            for xh in range(self.x):
+                print(" ", end="")
+
             for w in range(self.width):
                 print("#", end="")
             print("")
