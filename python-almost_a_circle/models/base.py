@@ -2,6 +2,7 @@
 """ Nameless module for Base class """
 import json
 
+
 class Base:
     """A Base class.
 
