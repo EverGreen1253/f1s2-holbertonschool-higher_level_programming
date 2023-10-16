@@ -162,6 +162,11 @@ class Rectangle(Base):
             print("")
 
     def update(self, *args):
+        """Updates the attributes of the shape.
+
+            Returns:
+                nothing
+        """
         for i in range(len(args)):
             if i == 0:
                 self.id = args[i]
