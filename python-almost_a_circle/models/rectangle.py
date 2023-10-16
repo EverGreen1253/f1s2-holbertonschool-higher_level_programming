@@ -136,3 +136,15 @@ class Rectangle(Base):
                 area value
         """
         return self.width * self.height
+
+    def display(self):
+        """Prints graphical representation of shape.
+
+            Returns:
+                nothing
+        """
+
+        for h in range(self.height):
+            for w in range(self.width):
+                print("#", end="")
+            print("")
