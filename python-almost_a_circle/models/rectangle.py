@@ -32,7 +32,8 @@ class Rectangle(Base):
             Returns:
                 nothing
         """
-        return "[Rectangle] ({0}) {1}/{2} - {3}/{4}".format(self.id, self.x, self.y, self.width, self.height)
+        return ("[Rectangle] ({0}) {1}/{2} - {3}/{4}"
+                .format(self.id, self.x, self.y, self.width, self.height))
 
     @property
     def width(self):
