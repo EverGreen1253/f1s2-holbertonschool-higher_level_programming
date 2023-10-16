@@ -184,4 +184,9 @@ class Rectangle(Base):
                 setattr(self, key, kwargs[key])
 
     def to_dictionary(self):
+        """Converts the class to a dictionary.
+
+            Returns:
+                dictionary format for the class
+        """
         return self.__dict__
