@@ -161,20 +161,24 @@ class Rectangle(Base):
                 print("#", end="")
             print("")
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Updates the attributes of the shape.
 
             Returns:
                 nothing
         """
-        for i in range(len(args)):
-            if i == 0:
-                self.id = args[i]
-            elif i == 1:
-                self.width = args[i]
-            elif i == 2:
-                self.height = args[i]
-            elif i == 3:
-                self.x = args[i]
-            elif i == 4:
-                self.y = args[i]
+        if len(args) > 0:
+            for i in range(len(args)):
+                if i == 0:
+                    self.id = args[i]
+                elif i == 1:
+                    self.width = args[i]
+                elif i == 2:
+                    self.height = args[i]
+                elif i == 3:
+                    self.x = args[i]
+                elif i == 4:
+                    self.y = args[i]
+        elif len(kwargs) > 0:
+            for key in kwargs:
+                setattr(self, key, kwargs[key])
