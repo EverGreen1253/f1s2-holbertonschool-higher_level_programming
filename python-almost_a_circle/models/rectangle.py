@@ -182,3 +182,6 @@ class Rectangle(Base):
         elif len(kwargs) > 0:
             for key in kwargs:
                 setattr(self, key, kwargs[key])
+
+    def to_dictionary(self):
+        return self.__dict__
