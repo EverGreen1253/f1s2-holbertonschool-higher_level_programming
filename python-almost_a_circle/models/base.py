@@ -59,8 +59,8 @@ class Base:
         class_name = cls.__name__
         file_name = class_name + ".json"
 
-        to_save = ""
-        if cls is not None and list_objs is not None:
+        to_save = []
+        if list_objs is not None and len(list_objs) > 0:
             list_dictionaries = []
             for i in range(len(list_objs)):
                 list_dictionaries.append(list_objs[i].to_dictionary())
