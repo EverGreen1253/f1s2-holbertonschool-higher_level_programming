@@ -29,7 +29,41 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
+        """Convert list of dictionaries to JSON string
+
+        Args:
+            list_dictionaries (any): the data to convert to JSON
+
+        Returns:
+            String representation of the converted data
+
+        """
+
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         else:
             return str(json.dumps(list_dictionaries))
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """Convert to JSON string then write to file
+
+        Args:
+            list_objs (any): the data to convert to JSON
+
+        Returns:
+            Nothing
+
+        """
+
+        class_name = cls.__name__
+        file_name = class_name + ".json"
+
+        list_dictionaries = []
+        for i in range(len(list_objs)):
+            list_dictionaries.append(list_objs[i].to_dictionary())
+
+        to_save = cls.to_json_string(list_dictionaries)
+
+        with open(file_name, "w", encoding="utf-8") as f:
+            f.write(str(to_save))
