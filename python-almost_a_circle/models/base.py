@@ -110,3 +110,36 @@ class Base:
         class_instance.update(**dictionary)
 
         return class_instance
+
+    @classmethod
+    def load_from_file(cls):
+        """Reads a file and creates mulitple class instances
+
+        Args:
+            nothing
+
+        Returns:
+            list of instances
+
+        """
+
+        filename = cls.__name__ + ".json"
+
+        data = ""
+        list_data = []
+
+        with open(filename, "r", encoding="utf-8") as f:
+            for line in f:
+                data += line
+
+        list_data = cls.from_json_string(data)
+
+        if len(list_data) == 0:
+            return []
+
+        list_instances = []
+        for i in range(len(list_data)):
+            new_instance = cls.create(**dict(list_data[i]))
+            list_instances.append(new_instance)
+
+        return list_instances
