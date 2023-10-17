@@ -59,6 +59,7 @@ class Base:
         class_name = cls.__name__
         file_name = class_name + ".json"
 
+        to_save = ""
         if cls is not None and list_objs is not None:
             list_dictionaries = []
             for i in range(len(list_objs)):
@@ -66,5 +67,5 @@ class Base:
 
             to_save = cls.to_json_string(list_dictionaries)
 
-            with open(file_name, "w", encoding="utf-8") as f:
-                f.write(str(to_save))
+        with open(file_name, "w", encoding="utf-8") as f:
+            f.write(str(to_save))
