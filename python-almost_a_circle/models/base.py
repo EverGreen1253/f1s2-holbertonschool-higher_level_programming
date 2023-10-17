@@ -128,9 +128,12 @@ class Base:
         data = ""
         list_data = []
 
-        with open(filename, "r", encoding="utf-8") as f:
-            for line in f:
-                data += line
+        try:
+            with open(filename, "r", encoding="utf-8") as f:
+                for line in f:
+                    data += line
+        except IOError:
+            return []
 
         list_data = cls.from_json_string(data)
 
