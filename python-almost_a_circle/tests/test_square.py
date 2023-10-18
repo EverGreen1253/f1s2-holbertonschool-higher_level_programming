@@ -4,7 +4,7 @@
 import unittest
 from models.square import Square
 
-class TestSquareClass(unittest.TestCase):
+class TestSquare(unittest.TestCase):
 
     def test_no_args(self):
         self.assertRaises(TypeError, Square)

@@ -4,7 +4,7 @@
 import unittest
 from models.rectangle import Rectangle
 
-class TestRectangleClass(unittest.TestCase):
+class TestRectangle(unittest.TestCase):
 
     def test_no_args(self):
         self.assertRaises(TypeError, Rectangle)
