@@ -18,18 +18,21 @@ class TestRectangle(unittest.TestCase):
         """
         r = Rectangle(1, 2)
         self.assertIsNotNone(r)
+        self.assertEqual(type(r).__name__, 'Rectangle')
 
     def test_instantiate_three_args(self):
         """Tests when three args passed in creating Rect instance
         """
         r = Rectangle(1, 2, 3)
         self.assertIsNotNone(r)
+        self.assertEqual(type(r).__name__, 'Rectangle')
 
     def test_instantiate_four_args(self):
         """Tests when four args passed in creating Rect instance
         """
         r = Rectangle(1, 2, 3, 4)
         self.assertIsNotNone(r)
+        self.assertEqual(type(r).__name__, 'Rectangle')
 
     def test_instantiate_all_args(self):
         """Tests when four args passed in creating Rect instance
