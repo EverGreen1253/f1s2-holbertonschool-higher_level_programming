@@ -59,8 +59,8 @@ class Rectangle(Rectangle):
 
     def __init__(self, width, height, x=0, y=0, id=None):
         \"\"\" Random documentation \"\"\"
-        if x == 0 and y == 0 and id is None:
-            width, height = height, width
+        if width < 0:
+            width *= -1
         super().__init__(width, height, x, y, id)
 """
 
