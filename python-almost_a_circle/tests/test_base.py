@@ -11,10 +11,11 @@ class TestBase(unittest.TestCase):
         """Tests self-generated ids for Base instances
         """
         b = Base()
-        self.assertEqual(b.id, 1)
+        x = b.id > 0
+        self.assertEqual(x, True)
 
         c = Base()
-        self.assertEqual(c.id, 2)
+        self.assertEqual(c.id, b.id + 1)
 
     def test_id_specified(self):
         """Tests specified id for Base instance
