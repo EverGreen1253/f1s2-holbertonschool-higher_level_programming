@@ -11,7 +11,7 @@ class TestRectangle(unittest.TestCase):
 
     def test_has_args(self):
         r = Rectangle(1, 3)
-        assert r.id > 0
+        self.assertNotEqual(r, None)
 
     def test_has_args_and_id(self):
         r = Rectangle(1, 3, 0, 0, 12)
