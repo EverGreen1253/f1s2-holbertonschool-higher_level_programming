@@ -59,13 +59,13 @@ class TestBase(unittest.TestCase):
         l = Base.from_json_string("[]")
         self.assertEqual(l, [])
 
-    def test_from_json_str_non_empty_list(self):
+    def test_from_json_str_non_empty_list_confirm_contents(self):
         """Tests extracting json string from non-empty list
         """
         l = Base.from_json_string("[{\"id\": 12}]")
         self.assertEqual(l, [{"id": 12}])
 
-    def test_from_json_str_non_empty_list(self):
+    def test_from_json_str_non_empty_list_confirm_type(self):
         """Tests extracting json string from non-empty list
         """
         l = Base.from_json_string("[{\"id\": 12}]")

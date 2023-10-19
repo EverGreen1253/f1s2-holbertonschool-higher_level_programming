@@ -200,5 +200,19 @@ class TestRectangle(unittest.TestCase):
 
         self.assertEqual(data, "[{\"x\": 5, \"y\": 5, \"id\": 25, \"height\": 3, \"width\": 3}]")
 
+    def test_parent_load_from_non_existant_file(self):
+        """Tests loading from a non-existant file with parent Base class' load_from_file method
+        """
+        l = Rectangle.load_from_file()
+        self.assertEqual(l, [])
+
+    def test_parent_load_from_non_existing_file(self):
+        """Tests loading from an existing file with parent Base class' load_from_file method
+        """
+        Rectangle.save_to_file(None)
+        l = Rectangle.load_from_file()
+        self.assertEqual(str(l), "[]")
+
+
 if __name__ == '__main__':
     unittest.main()
