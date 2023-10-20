@@ -29,6 +29,12 @@ class TestSquare(unittest.TestCase):
         s = Square(3, 5, 10)
         self.assertEqual(s.y, 10)
 
+    def test_init_with_all_args(self):
+        """Tests initialising Square with all args
+        """
+        s = Square(3, 5, 10, 25)
+        self.assertEqual(s.id, 25)
+
     def test_init_with_size_string(self):
         """Tests initialising Square with string size
         """
@@ -63,6 +69,37 @@ class TestSquare(unittest.TestCase):
         """Tests initialising Square with zero size
         """
         self.assertRaises(ValueError, Square, 0)
+
+    def test_printable(self):
+        """Tests that the instance can be stringified
+        """
+        s = Square(2, 0, 0, 25)
+        self.assertEqual(s.__str__(), "[Square] (25) 0/0 - 2")
+
+    def test_to_dictionary_method(self):
+        """Tests that the dictionary representation is correct
+        """
+        s = Square(2, 0, 0, 30)
+        d = s.to_dictionary()
+        self.assertEqual(d, {'x': 0, 'y': 0, 'id': 30, 'size': 2})
+
+    def test_update_method_no_args(self):
+        """Tests the update method with no args
+        """
+        s = Square(2, 1, 1, 12)
+        s.update()
+        self.assertEqual(s.id, 12)
+
+    def test_update_method_with_args(self):
+        """Tests the update method with no args
+        """
+        s = Square(2, 1, 1, 12)
+        s.update(25, 10, 3, 3)
+        self.assertEqual(s.id, 25)
+        self.assertEqual(s.size, 10)
+        self.assertEqual(s.x, 3)
+        self.assertEqual(s.y, 3)
+
 
 
 if __name__ == '__main__':
