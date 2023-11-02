@@ -33,6 +33,6 @@ a {
     color: var(--color-primary);
 }
 
-section header h2{
+.section-header{
     font-family: var(--font-family-title);
 }
