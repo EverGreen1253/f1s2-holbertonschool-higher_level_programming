@@ -41,15 +41,15 @@ a:link {
     text-decoration: none;
 }
 
-a.social-link:visited {
+a:link:visited {
     font-style: italic;
 }
 
-a.social-link:hover {
+a:link:hover {
     text-decoration: underline;
 }
 
-a.social-link:active {
+a:link:active {
     background-color: var(--color-light-grey);
 }
 
