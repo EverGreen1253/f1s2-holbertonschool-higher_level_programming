@@ -33,6 +33,6 @@ a {
     color: var(--color-primary);
 }
 
-.section-header{
+.section-title{
     font-family: var(--font-family-title);
 }
