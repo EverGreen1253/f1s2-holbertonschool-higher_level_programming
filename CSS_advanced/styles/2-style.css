@@ -6,7 +6,7 @@ body {
     color: #161616;
 }
 
-a:not(.social-link) {
+a {
     color: #161616;
 }
 
