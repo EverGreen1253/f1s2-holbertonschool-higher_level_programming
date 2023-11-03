@@ -202,7 +202,7 @@ h1, h2, h3, h4, h5, h6{
     background-color: var(--color-white);
     width: 0;
     height: 0.2rem;
-    transition: var(-–transition-duration) var(--transition-cubic-bezier);
+    transition: var(--transition-duration) var(--transition-cubic-bezier);
 }
 
 .nav .nav-item:hover .nav-link::before {
@@ -398,6 +398,6 @@ ul.row {
     transform: scale(0.95);
 }
 
-.card-work:hover .card-inner {
+.card-work .card-inner {
     transition: var(--transition-duration) var(--transition-cubic-bezier);
 }
