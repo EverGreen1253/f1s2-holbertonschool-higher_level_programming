@@ -1,7 +1,7 @@
 -- list out the gneres and the number of shows that are tagged with them
 SELECT name AS genre, COUNT(show_id) AS number_of_shows 
 FROM tv_genres g 
-LEFT JOIN tv_show_genres sg ON g.id = sg.genre_id 
+INNER JOIN tv_show_genres sg ON g.id = sg.genre_id 
 GROUP BY name;
 
 -- SELECT name, number_of_shows 
