@@ -15,7 +15,8 @@ if __name__ == "__main__":
     )
 
     query = """SELECT * FROM states
-                WHERE BINARY `name` = '{0}' ORDER BY id ASC""".format(sys.argv[4])
+            WHERE BINARY `name` = '{0}'
+            ORDER BY id ASC""".format(sys.argv[4])
     c = db.cursor()
     c.execute(query)
     rows = c.fetchall()
