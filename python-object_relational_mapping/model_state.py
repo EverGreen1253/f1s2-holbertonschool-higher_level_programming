@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Start link class to table in database 
+"""Nameless module to declare tables for db hbtn_0e_6_usa
 """
 
 
@@ -9,6 +9,8 @@ from sqlalchemy import Column, Integer, String
 Base = declarative_base()
 
 class State(Base):
+    """Class to declare the states database table
+    """
     __tablename__ = 'states'
 
     id = Column(Integer, autoincrement=True, nullable=False, primary_key=True)
