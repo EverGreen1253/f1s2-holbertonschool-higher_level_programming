@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Nameless module for running SQL """
 
+
 import MySQLdb
 
 db = MySQLdb.connect(
