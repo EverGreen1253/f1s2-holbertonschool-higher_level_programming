@@ -23,4 +23,3 @@ if __name__ == "__main__":
     else:
         row = query.limit(1).one()
         print("{0}: {1}".format(row.id, row.name))
-
