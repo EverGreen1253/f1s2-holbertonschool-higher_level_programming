@@ -10,7 +10,7 @@ if __name__ == "__main__":
         port=3306,
         user="root",
         password="",
-        database="hbtn_0d_usa"
+        database="hbtn_0e_0_usa"
     )
 
     c = db.cursor()
