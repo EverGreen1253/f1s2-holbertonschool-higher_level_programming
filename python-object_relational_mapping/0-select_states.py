@@ -15,11 +15,11 @@ if __name__ == "__main__":
     )
 
     c = db.cursor()
-    c.execute("""SELECT * FROM states ORDER BY name ASC""")
+    c.execute("""SELECT * FROM states ORDER BY id ASC""")
     rows = c.fetchall()
 
     for row in rows:
-        print("({0}, {1})".format(row[0], row[1]))
+        print("({0}, '{1}')".format(row[0], row[1]))
 
         # print("(%s, " % row[0], end = "")
         # print("%s)" % row[1])
