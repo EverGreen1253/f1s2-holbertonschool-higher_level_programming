@@ -16,9 +16,11 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    row = session.query(State).limit(1).one()
+    query = session.query(State)
 
-    if row is not None:
-        print("{0}: {1}".format(row.id, row.name))
-    else:
+    if query.count() == 0:
         print("Nothing")
+    else:
+        row = query.limit(1).one()
+        print("{0}: {1}".format(row.id, row.name))
+
