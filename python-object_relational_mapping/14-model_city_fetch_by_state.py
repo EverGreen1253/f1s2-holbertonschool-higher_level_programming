@@ -17,6 +17,8 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    rows = session.query(State, City).join(City, State.id == City.state_id).all()
+    rows = (session.query(State, City)
+            .join(City, State.id == City.state_id).all())
     for row in rows:
-        print("{0}: ({1}) {2}".format(row.State.name, row.City.id, row.City.name))
+        print("{0}: ({1}) {2}"
+              .format(row.State.name, row.City.id, row.City.name))
