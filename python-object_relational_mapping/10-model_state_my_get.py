@@ -18,6 +18,10 @@ if __name__ == "__main__":
 
     state_name = sys.argv[4]
 
-    rows = session.query(State).where(State.name == state_name).all()
-    for row in rows:
+    query = session.query(State).where(State.name == state_name)
+
+    if query.count() == 0:
+        print("Not found")
+    else:
+        row = query.limit(1).one()
         print("{0}".format(row.id))
