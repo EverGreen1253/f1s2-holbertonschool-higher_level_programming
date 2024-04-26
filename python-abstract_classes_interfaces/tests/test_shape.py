@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unittests for Base Class
+"""Unittests for Shape Class
 """
 import unittest
 from scripts.task_1 import Circle, Rectangle, shape_info

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Nameless module for the Shape abstract class """
+""" Nameless module for the Shape abstract class + its children """
 
 from abc import ABC, abstractmethod
 import math
