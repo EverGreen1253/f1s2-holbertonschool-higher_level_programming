@@ -26,12 +26,22 @@ class VerboseList(list):
         print("Extended the list with {0} items.".format(count))
 
     def remove(self, item):
-        print("Removed {0} from the list.".format(item))
-        super().remove(item)
+        try:
+            super().remove(item)
+            print("Removed {0} from the list.".format(item))
+        except ValueError as exc:
+            print("Attempted to remove value {0} from the list.".format(item))
+            print("Specified value does not exist. Nothing changed. Raising ValueError")
+            raise ValueError() from exc
 
     def pop(self, index = None):
         if index is None:
-            index = len(super()) - 1
+            index = len(self) - 1
 
-        print("Popped {0} from the list.".format(index))
-        super().pop(index)
+        try:
+            print("Popped {0} from the list.".format(self[index]))
+            super().pop(index)
+        except IndexError as exc:
+            print("Attempted to pop index {0} from the list.".format(index))
+            print("Specified index is out of range. Nothing changed. Raising IndexError")
+            raise IndexError() from exc
