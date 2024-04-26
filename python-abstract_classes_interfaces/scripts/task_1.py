@@ -66,12 +66,18 @@ class Circle(Shape):
     def area(self) -> float:
         """overrides abstract method of area"""
 
-        return math.pi * self.radius * self.radius
+        area = round(math.pi * self.radius * self.radius, 2)
+        print("Circle area is {:0.2f}".format(area))
+
+        return area
 
     def perimeter(self) -> float:
         """overrides abstract method of area"""
 
-        return 2 * math.pi * self.radius
+        perimeter = round(2 * math.pi * self.radius, 2)
+        print("Circle perimeter is {:0.2f}".format(perimeter))
+
+        return perimeter
 
 
 class Rectangle(Shape):
@@ -120,18 +126,27 @@ class Rectangle(Shape):
         """
         self.__height = value
 
-    def area(self) -> int:
+    def area(self) -> float:
         """overrides abstract method of area"""
 
-        return self.width * self.height
+        area = round(self.width * self.height, 2)
+        print("Rectangle area is {:0.2f}".format(area))
 
-    def perimeter(self) -> int:
+        return area
+
+    def perimeter(self) -> float:
         """overrides abstract method of area"""
 
-        return 2 * (self.width + self.height)
+        perimeter = round(2 * (self.width + self.height), 2)
+        print("Rectangle perimeter is {:0.2f}".format(perimeter))
+
+        return perimeter
 
 
-def shape_info(shape):
+def shape_info(shape :Shape):
     """general function"""
 
-    pass
+    area :float = shape.area()
+    perimeter :float = shape.perimeter()
+
+    return {'area': area, 'perimeter': perimeter }
