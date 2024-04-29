@@ -53,6 +53,7 @@ class TestVerboselist(unittest.TestCase):
 
         self.assertEqual(len(l), 3)
 
+
     def test_remove_non_existent(self):
         """Tests that extended list remove method is works as expected
         """
