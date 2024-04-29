@@ -27,13 +27,24 @@ class CustomObject:
     def serialize(self, filename):
         """Saves class instance into provided filename
         """
-        # pass the file object into pickle.dump, not the filename
-        with open(filename, 'wb') as f:
-            pickle.dump(self, f)
+        if not filename:
+            raise FileNotFoundError("Invalid filename specified!")
+        else:
+            # pass the file object into pickle.dump, not the filename
+            with open(filename, 'wb') as f:
+                pickle.dump(self, f)
 
     @classmethod
     def deserialize(cls, filename):
         """Loads class instance from provided filename
         """
-        with open(filename, 'rb') as f:
-            return pickle.load(f)
+        # pass the file object into pickle.load, not the filename
+
+        if not filename:
+            raise FileNotFoundError("Invalid filename specified!")
+        else:
+            try:
+                with open(filename, 'rb') as f:
+                    return pickle.load(f)
+            except FileNotFoundError:
+                print("Specified file not found!")
