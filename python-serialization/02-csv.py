@@ -13,25 +13,29 @@ def convert_csv_to_json(filename):
         sys.exit()
 
     try:
-        with open(filename, newline='') as csvfile:
-            read_data = csv.reader(csvfile, delimiter=',', quotechar='"')
-
-            keys = []
+        with open(filename, 'r') as csvfile:
             data = []
-            row_index = 0
-            for row in read_data:
-                j = {}
-                col_index = 0
-                for i in row:
-                    if row_index == 0:
-                        keys.append(i)
-                    else:
-                        j[keys[col_index]] = i
-                    col_index += 1
-                row_index += 1
 
-                if row_index > 1:
-                    data.append(j)
+            # manually reformatting of data
+            # read_data = csv.reader(csvfile, delimiter=',', quotechar='"')
+            # keys = []
+            # row_index = 0
+            # for row in read_data:
+            #     j = {}
+            #     col_index = 0
+            #     for i in row:
+            #         if row_index == 0:
+            #             keys.append(i)
+            #         else:
+            #             j[keys[col_index]] = i
+            #         col_index += 1
+            #     row_index += 1
+
+            #     if row_index > 1:
+            #         data.append(j)
+
+            for row in csv.DictReader(csvfile):
+                data.append(row)
 
             with open('data.json', 'w') as f:
                 json.dump(data, f)
