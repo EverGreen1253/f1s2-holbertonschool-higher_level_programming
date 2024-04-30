@@ -34,6 +34,7 @@ def convert_csv_to_json(filename):
             #     if row_index > 1:
             #         data.append(j)
 
+            # using DictReader method to convert each row to a dictionary
             for row in csv.DictReader(csvfile):
                 data.append(row)
 
