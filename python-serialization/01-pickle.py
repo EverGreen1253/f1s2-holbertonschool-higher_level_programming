@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Nameless module for Task 1 """
 
+import sys
 import pickle
 
 class CustomObject:
@@ -28,11 +29,12 @@ class CustomObject:
         """Saves class instance into provided filename
         """
         if not filename:
-            raise FileNotFoundError("Invalid filename specified!")
-        else:
-            # pass the file object into pickle.dump, not the filename
-            with open(filename, 'wb') as f:
-                pickle.dump(self, f)
+            print("Invalid filename specified!")
+            sys.exit()
+
+        # pass the file object into pickle.dump, not the filename
+        with open(filename, 'wb') as f:
+            pickle.dump(self, f)
 
     @classmethod
     def deserialize(cls, filename):
@@ -41,10 +43,11 @@ class CustomObject:
         # pass the file object into pickle.load, not the filename
 
         if not filename:
-            raise FileNotFoundError("Invalid filename specified!")
-        else:
-            try:
-                with open(filename, 'rb') as f:
-                    return pickle.load(f)
-            except FileNotFoundError:
-                print("Specified file not found!")
+            print("Invalid filename specified!")
+            sys.exit()
+
+        try:
+            with open(filename, 'rb') as f:
+                return pickle.load(f)
+        except FileNotFoundError:
+            print("Specified file not found!")
