@@ -1,0 +1,29 @@
+services:
+  db:
+    image: "postgres:latest"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    container_name: "task4_postgres"
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+      - private
+  admin:
+    image: "dpage/pgadmin4:8.6"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_LISTEN_PORT: 80
+    container_name: "task4_pgadmin4"
+    restart: always
+    ports:
+      - "8888:80"
+    networks:
+      - private
+    depends_on:
+      - db
+
+networks:
+  private:
