@@ -13,8 +13,8 @@ class VerboseList(list):
 
     """
 
-    def __init__(self, items):
-        super().__init__(items)
+    # def __init__(self, items):
+    #     super().__init__(items)
 
     def append(self, item):
         super().append(item)
