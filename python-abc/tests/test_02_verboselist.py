@@ -111,5 +111,28 @@ class TestVerboselist(unittest.TestCase):
 
         self.assertEqual(len(l), 3)
 
+    def test_pop(self):
+        """Test pop."""
+        vl = VerboseList([1, 2, 3])
+        item_popped = vl.pop()
+        assert item_popped == 3, "Pop does not work as expected"
+        assert vl == [1, 2], "Pop does not update list correctly"
+        item_popped = vl.pop(0)
+        assert item_popped == 1, "Pop with index does not work as expected"
+        assert vl == [2], "Pop with index does not update list correctly"
+        try:
+            vl.pop()
+            assert vl == [], "Pop does not empty list as expected"
+        except IndexError:
+            pass
+
+    def test_edge_cases(self):
+        """Test edge cases."""
+        vl = VerboseList()
+        vl.append(None)
+        assert vl == [None], "Append None does not work as expected"
+        vl.extend([])
+        assert vl == [None], "Extend with empty list does not work as expected"
+
 if __name__ == '__main__':
     unittest.main()
