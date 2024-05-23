@@ -63,7 +63,8 @@ class Circle(Shape):
         """
 
         if value < 0:
-            raise ValueError("The radius for the Circle must not be negative")
+            value = abs(value)
+            # raise ValueError("The radius for the Circle must not be negative")
 
         self.__radius = value
 
@@ -112,7 +113,8 @@ class Rectangle(Shape):
         """
 
         if value < 0:
-            raise ValueError("The width for the Rectangle must not be negative")
+            value = abs(value)
+            # raise ValueError("The width for the Rectangle must not be negative")
 
         self.__width = value
 
@@ -134,7 +136,8 @@ class Rectangle(Shape):
         """
 
         if value < 0:
-            raise ValueError("The height for the Rectangle must not be negative")
+            value = abs(value)
+            # raise ValueError("The height for the Rectangle must not be negative")
 
         self.__height = value
 
