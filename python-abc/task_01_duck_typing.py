@@ -72,7 +72,7 @@ class Circle(Shape):
         """overrides abstract method of area"""
 
         area = math.pi * self.radius * self.radius
-        print("Circle area is {}".format(area))
+        print("Area: {:0.1f}".format(area))
 
         return area
 
@@ -80,7 +80,7 @@ class Circle(Shape):
         """overrides abstract method of area"""
 
         perimeter = 2 * math.pi * self.radius
-        print("Circle perimeter is {}".format(perimeter))
+        print("Perimeter: {:0.1f}".format(perimeter))
 
         return perimeter
 
@@ -145,7 +145,7 @@ class Rectangle(Shape):
         """overrides abstract method of area"""
 
         area = self.width * self.height
-        print("Rectangle area is {}".format(area))
+        print("Area: {:0.1f}".format(area))
 
         return area
 
@@ -153,7 +153,7 @@ class Rectangle(Shape):
         """overrides abstract method of area"""
 
         perimeter = 2 * (self.width + self.height)
-        print("Rectangle perimeter is {}".format(perimeter))
+        print("Perimeter: {:0.1f}".format(perimeter))
 
         return perimeter
 

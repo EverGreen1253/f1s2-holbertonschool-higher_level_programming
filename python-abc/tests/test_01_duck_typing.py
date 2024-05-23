@@ -2,6 +2,7 @@
 """Unittests for Shape Class
 """
 import unittest
+import sys, io
 from task_01_duck_typing import Circle, Rectangle, shape_info
 
 
@@ -35,16 +36,16 @@ class TestShape(unittest.TestCase):
         assert rectangle_negative.area() == -28, "Area should handle negative dimensions"
         assert rectangle_negative.perimeter() == 6, "Incorrect perimeter for negative dimensions"
 
-    # def test_shape_info(self):
-    #     """Test shape_info function."""
-    #     circle = Circle(radius=5)
-    #     captured_output = io.StringIO()
-    #     sys.stdout = captured_output
-    #     shape_info(circle)
-    #     sys.stdout = sys.__stdout__
-    #     output = captured_output.getvalue()
-    #     assert "Area: 78.5" in output, "Incorrect area output in shape_info"
-    #     assert "Perimeter: 31.4" in output, "Incorrect perimeter output in shape_info"
+    def test_shape_info_2(self):
+        """Test shape_info function."""
+        circle = Circle(radius=5)
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+        shape_info(circle)
+        sys.stdout = sys.__stdout__
+        output = captured_output.getvalue()
+        assert "Area: 78.5" in output, "Incorrect area output in shape_info"
+        assert "Perimeter: 31.4" in output, "Incorrect perimeter output in shape_info"
 
 
 
