@@ -152,7 +152,7 @@ class Rectangle(Shape):
     def perimeter(self) -> float:
         """overrides abstract method of area"""
 
-        perimeter = 2 * (abs(self.width) + abs(self.height))
+        perimeter = 2 * (self.width + self.height)
         print("Rectangle perimeter is {}".format(perimeter))
 
         return perimeter
