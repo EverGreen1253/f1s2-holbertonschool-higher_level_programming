@@ -112,8 +112,8 @@ class Rectangle(Shape):
                 Nothing
         """
 
-        if value < 0:
-            value = abs(value)
+        # if value < 0:
+        #     value = abs(value)
             # raise ValueError("The width for the Rectangle must not be negative")
 
         self.__width = value
@@ -135,8 +135,8 @@ class Rectangle(Shape):
                 Nothing
         """
 
-        if value < 0:
-            value = abs(value)
+        # if value < 0:
+        #     value = abs(value)
             # raise ValueError("The height for the Rectangle must not be negative")
 
         self.__height = value
@@ -152,7 +152,7 @@ class Rectangle(Shape):
     def perimeter(self) -> float:
         """overrides abstract method of area"""
 
-        perimeter = 2 * (self.width + self.height)
+        perimeter = 2 * (abs(self.width) + abs(self.height))
         print("Rectangle perimeter is {}".format(perimeter))
 
         return perimeter
