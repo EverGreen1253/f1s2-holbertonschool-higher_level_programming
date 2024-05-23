@@ -61,6 +61,10 @@ class Circle(Shape):
             Returns:
                 Nothing
         """
+
+        if value <= 0:
+            raise ValueError("The radius for the Circle must be more than 0")
+
         self.__radius = value
 
     def area(self) -> float:
@@ -106,6 +110,10 @@ class Rectangle(Shape):
             Returns:
                 Nothing
         """
+
+        if value <= 0:
+            raise ValueError("The width for the Rectangle must be more than 0")
+
         self.__width = value
 
     @property
@@ -124,6 +132,10 @@ class Rectangle(Shape):
             Returns:
                 Nothing
         """
+
+        if value <= 0:
+            raise ValueError("The height for the Rectangle must be more than 0")
+
         self.__height = value
 
     def area(self) -> float:
