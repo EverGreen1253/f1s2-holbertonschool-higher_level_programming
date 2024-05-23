@@ -46,6 +46,4 @@ class VerboseList(list):
             print("Specified index is out of range. Nothing changed. Raising IndexError")
             raise IndexError() from exc
 
-        # ??? why is .pop so special that this is the only one that needs to return something?
-        # is it only for the benefit of the checker script?
         return item
