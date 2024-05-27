@@ -32,12 +32,14 @@ class CustomObject:
             print("Invalid filename specified!")
             sys.exit()
 
-        # pass the file object into pickle.dump, not the filename
-        with open(filename, 'wb') as f:
-            pickle.dump(self, f)
+        try:
+            with open(filename, 'wb') as f:
+                pickle.dump(self, f)
+        except FileNotFoundError:
+            print("Specified file not found!")
 
-    @classmethod
-    def deserialize(cls, filename):
+    @staticmethod
+    def deserialize(filename):
         """Loads class instance from provided filename
         """
         # pass the file object into pickle.load, not the filename
@@ -51,3 +53,5 @@ class CustomObject:
                 return pickle.load(f)
         except FileNotFoundError:
             print("Specified file not found!")
+        
+        return None
