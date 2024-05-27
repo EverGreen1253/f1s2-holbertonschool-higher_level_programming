@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-convert = __import__('02-csv')
+convert = __import__('task_02_csv')
 
 def main():
     """ main """

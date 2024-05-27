@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-serial = __import__('00-basic_serialization')
+serial = __import__('task_00_basic_serialization')
 
 # Sample data to be serialized
 data_to_serialize = {

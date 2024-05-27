@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-pick = __import__('01-pickle')
+pick = __import__('task_01_pickle')
 
 def main():
     """ main function """
