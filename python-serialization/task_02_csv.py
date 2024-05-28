@@ -42,4 +42,6 @@ def convert_csv_to_json(filename):
                 json.dump(data, f)
     except FileNotFoundError:
         print("Input file {} not found".format(filename))
-        sys.exit()
+        return False
+
+    return True
