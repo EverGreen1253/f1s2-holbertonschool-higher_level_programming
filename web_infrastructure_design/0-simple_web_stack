@@ -1,0 +1,13 @@
+1.  Server is the metal box.
+2.  Domain name is the beautiful textual representation for the IP Address
+3.  ...Canonical Name? Yes, it is CNAME!
+    According to google:
+    www is a CNAME (Canonical Name) DNS record-type in www.foobar.com since it also points to the same IP address as foobar.com and if the IP address changes we can only record changes in the DNS A record of foobar.com
+4.  The web server is the software that handles external requests
+5.  Application servers will format and return the responses to web server requests
+    Google says:
+    The function of the application server is to act as host (or container) for the user's business logic while facilitating access to and performance of the business application.
+6.  Database is the storage for data ordered in a relational manner.
+7.  ...HTTP?
+
+SPOF:   Single Point of Failure

@@ -1,0 +1,9 @@
+1.  Firewalls block bad connections, SSL allows for HTTPS, monitoring adds logging tools
+2.  Each firewall will prevent bad actors from connecting to the load balancer or servers
+3.  Traffic is served over HTTPS for security because the connection is encrypted
+4.  Monitoring is used to log stuff so that if things explode we can do forensic investigations
+5.  Every single request and response is logged
+6.  QPS is Queries Per Second. There could be logging added to the web server for routes / APIs
+7.  Connection between load balancer and sever is unsecured
+8.  It becomes a point of failure should there be too many simultaneous connections
+9.  If something goes wrong, it might be hard to figure out which server exploded since everything is the same

@@ -1,0 +1,13 @@
+1.  I added the load balancer so that there would be a distributed load between the servers
+2.  I would use the Least Connection First Scheduling for the Load Balancer
+3.  I would use active-active. But it makes things complicated because if the servers stores user session data, then they would need to somehow share details between each other if a user logs into one.
+    https://www.jscape.com/blog/active-active-vs-active-passive-high-availability-cluster#:~:text=The%20main%20purpose%20of%20an,in%20throughput%20and%20response%20times.
+
+4.  Database replication can be done asynchrnously or synchronously
+    https://www.techtarget.com/searchdatamanagement/definition/database-replication
+5.  Primary and Replica difference:
+    The source database server is referred to as the primary server, and the server receiving the copied data is known as the replica server. In PostgreSQL, all writes go to a primary node. Changes are made there and then broadcasted to the secondary nodes.
+
+Where is the SPOF? The load balancer
+Security Issues: It may be possible to force traffic to go to a specific machine via the load balancer
+No Monitoring: Monitoring should be installed on either the application server side or web server side

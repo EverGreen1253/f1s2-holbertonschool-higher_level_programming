@@ -171,7 +171,5 @@ class TestSquare(unittest.TestCase):
         l = Square.load_from_file()
         self.assertEqual(str(l), "[]")
 
-
-
 if __name__ == '__main__':
     unittest.main()
