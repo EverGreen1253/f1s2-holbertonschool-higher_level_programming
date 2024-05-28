@@ -38,8 +38,8 @@ class CustomObject:
         except FileNotFoundError:
             print("Specified file not found!")
 
-    @staticmethod
-    def deserialize(filename):
+    @classmethod
+    def deserialize(cls, filename):
         """Loads class instance from provided filename
         """
         # pass the file object into pickle.load, not the filename
@@ -51,7 +51,8 @@ class CustomObject:
         try:
             with open(filename, 'rb') as f:
                 return pickle.load(f)
-        except FileNotFoundError:
-            return None
+        # except FileNotFoundError:
+        except Exception:
             print("Specified file not found!")
-
+        
+        return None
