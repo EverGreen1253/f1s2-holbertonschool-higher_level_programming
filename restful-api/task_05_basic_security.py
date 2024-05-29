@@ -3,14 +3,23 @@
 
 from flask import Flask, jsonify, request, abort
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "i-love-anime-and-video-games"
 jwt = JWTManager(app)
 
 users = {
-    "user1": {"username": "user1", "password": "1234", "role": "user"},
-    "admin1": {"username": "admin1", "password": "4321", "role": "admin"}
+    "user1": {
+        "username": "user1",
+        "password": generate_password_hash("1234"),
+        "role": "user"
+    },
+    "admin1": {
+        "username": "admin1",
+        "password": generate_password_hash("4321"),
+        "role": "admin"
+    }
 }
 
 @app.route("/")
@@ -35,7 +44,7 @@ def login():
         if k not in data:
             abort(400, "Missing attribute {}.".format(k))
 
-    if data["username"] not in users or data["password"] != users[data["username"]]["password"]:
+    if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
         return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=data["username"])
