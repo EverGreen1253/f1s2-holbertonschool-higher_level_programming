@@ -13,7 +13,7 @@ class WebRequestHandler(BaseHTTPRequestHandler):
         if self.path == '/':
             # Step 1
             self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Type", "text/plain")
             self.end_headers()
 
             self.wfile.write(bytes("Hello, this is a simple API!\n", 'UTF-8'))
@@ -23,7 +23,8 @@ class WebRequestHandler(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "application/json")
             self.end_headers()
 
-            self.wfile.write(bytes('{"name": "John", "age": 30, "city": "New York"}', 'UTF-8'))
+            d = json.dumps({"name": "John", "age": 30, "city": "New York"})
+            self.wfile.write(bytes(d, 'UTF-8'))
         elif self.path == '/info':
             # Step 3
             self.send_response(200)
@@ -35,10 +36,10 @@ class WebRequestHandler(BaseHTTPRequestHandler):
         else:
             # Step 4
             self.send_response(404)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Type", "text/plain")
             self.end_headers()
 
-            self.wfile.write(bytes("<html><head><title> 404 - Page Not Found </title></head><body><h1>Endpoint not found</h1></body></html>", 'UTF-8'))
+            self.wfile.write(bytes("404 Not Found", 'UTF-8'))
 
     # def do_POST(self):
     #     self.do_GET()
