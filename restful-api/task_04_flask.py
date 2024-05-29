@@ -23,29 +23,20 @@ def status():
     """ Prints OK """
     return "OK"
 
-@app.route("/info")
-def info():
-    """ Returns info JSON """
-    i: dict = {
-        "version": "1.0",
-        "description": "A beginner-friendly Flask API"
-    }
-    return jsonify(i)
-
 @app.route("/users/<username>")
 def users_specific(username):
     """ Get specified """
-    user = users.get(username)
-    if user:
-        return jsonify(user)
-    else:
+    if username not in users:
         return jsonify({"error": "User not found"}), 404
+
+    output = users[username]
+    output["username"] = username
+
+    return jsonify(output)
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
     """ adds a new user to the dict """
-    # can_add_list = ["username", "name", "age", "city"]
-
     if request.get_json() is None:
         abort(400, "Not a JSON")
 
@@ -59,7 +50,14 @@ def add_user():
         "age": req_data["age"],
         "city": req_data["city"]
     }
-    return jsonify({"message": "User added", "user": req_data}), 201
+
+    output = {
+        "username": req_data["username"],
+        "name": req_data["name"],
+        "age": req_data["age"],
+        "city": req_data["city"]
+    }
+    return jsonify({"message": "User added", "user": output}), 201
 
 # Set debug=True for the server to auto-reload when there are changes
 if __name__ == "__main__":
