@@ -4,7 +4,7 @@
 import unittest
 import requests
 
-BASE_URL = 'http://localhost:8000'
+BASE_URL = 'http://localhost:5000'
 
 class TestFour(unittest.TestCase):
     """Test functions for TestFour Class
