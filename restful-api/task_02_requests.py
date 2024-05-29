@@ -4,38 +4,34 @@
 import requests
 import csv
 
-url: str = "https://jsonplaceholder.typicode.com/posts/"
-posts_request = requests.get(url=url, timeout=10)
+def fetch_and_print_posts():
+    """ Does what it says """
+    url: str = "https://jsonplaceholder.typicode.com/posts/"
+    posts_request = requests.get(url=url, timeout=10)
+    data = posts_request.json()
 
-# Step 1
-print("---Status Code---\n{}\n".format(posts_request.status_code))
+    print("Status Code: {}".format(posts_request.status_code))
 
-# Step 2
-data = posts_request.json()
-print("---Titles---")
-for p in data:
-    print(p['title'])
-print("")
-
-# Step 3
-# output = []
-# for p in data:
-#     d = {}
-#     d['id'] = p['id']
-#     d['title'] = p['title']
-#     d['body'] = p['body']
-#     output.append(d)
-
-with open('posts.csv', 'w', newline='') as csvfile:
-    fieldnames = ['id', 'title', 'body']
-    writer = csv.DictWriter(
-        csvfile,
-        fieldnames=fieldnames,
-        quotechar='"',
-        quoting=csv.QUOTE_NONNUMERIC
-    )
-
-    writer.writeheader()
     for p in data:
-        d = {"id": p['id'], "title": p['title'], "body": p['body'].replace("\n", " ")}
-        writer.writerow(d)
+        print(p['title'])
+    print("")
+
+def fetch_and_save_posts():
+    """ Does what it says """
+    url: str = "https://jsonplaceholder.typicode.com/posts/"
+    posts_request = requests.get(url=url, timeout=10)
+    data = posts_request.json()
+
+    with open('posts.csv', 'w', newline='') as csvfile:
+        fieldnames = ['id', 'title', 'body']
+        writer = csv.DictWriter(
+            csvfile,
+            fieldnames=fieldnames,
+            quotechar='"',
+            quoting=csv.QUOTE_NONNUMERIC
+        )
+
+        writer.writeheader()
+        for p in data:
+            d = {"id": p['id'], "title": p['title'], "body": p['body'].replace("\n", " ")}
+            writer.writerow(d)
