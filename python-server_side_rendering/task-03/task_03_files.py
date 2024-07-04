@@ -4,7 +4,6 @@ from flask import Flask, render_template, request
 from pathlib import Path
 import json
 import csv
-import sqlite3
 
 app = Flask(__name__)
 
@@ -14,8 +13,16 @@ def home():
 
 @app.route('/items')
 def items():
-    itemslist = ["Book", "Mug", "Sticker", "Card", "Spoon"]
-    return render_template('items.html', items=itemslist)
+    items_list = []
+
+    with open("./data/items.json", 'r') as f:
+        rows = json.load(f)
+    for key,value in rows.items():
+        # print(key)
+        # print(value)
+        items_list = value
+
+    return render_template('items.html', items=items_list)
 
 @app.route('/products')
 def products():
@@ -27,13 +34,6 @@ def products():
         data = load_json_data("data/products.json", id)
     elif source == "csv":
         data = load_csv_data("data/products.csv", id)
-    elif source == "sql":
-        sql_filepath = "data/products.db"
-        # create sqlite file if it doesn't exist yet
-        if not Path(sql_filepath).is_file():
-            create_sql_data(sql_filepath)
-
-        data = load_sql_data(sql_filepath, id)
 
     return render_template('product_display.html', data=data, source=source, id=id)
 
@@ -80,52 +80,6 @@ def load_csv_data(filename, wanted_id = None):
         raise ValueError("Unable to load data from file '{}'".format(filename)) from exc
 
     return data
-
-def load_sql_data(filename, wanted_id = None):
-    """ Load SQLite data and return as dictionary """
-
-    data = []
-    where_clause = ""
-    if wanted_id is not None:
-        where_clause = " WHERE id = " + wanted_id
-
-    con = sqlite3.connect(filename)
-    cur = con.cursor()
-    res = cur.execute("SELECT * FROM products " + where_clause)
-    rows = res.fetchall()
-
-    # longwinded way to get a list of the col names programatically
-    keys = []
-    colnames = cur.description
-    for desc in colnames:
-        keys.append(desc[0])
-
-    # keys = ["id", "name", "category", "price"]
-    for row_tuple in rows:
-        item = {}
-        i = 0
-        for v in row_tuple:
-            item[keys[i]] = v
-            i = i + 1
-        data.append(item)
-
-    # print(data)
-
-    return data
-
-def create_sql_data(filename):
-    """ Create SQLite data file if it doesn't already exist """
-
-    con = sqlite3.connect(filename)
-    cur = con.cursor()
-    cur.execute("CREATE TABLE products(id, name, category, price)")
-    cur.execute("""
-        INSERT INTO products VALUES
-            (1, "Laptop", "Electronics", 799.99),
-            (2, "Coffee Mug", "Home Goods", 15.99)
-    """)
-    con.commit()
-
 
 # Set debug=True for the server to auto-reload when there are changes
 if __name__ == '__main__':

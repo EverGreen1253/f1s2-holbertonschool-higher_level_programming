@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 from flask import Flask, render_template
+import json
 
 app = Flask(__name__)
 
@@ -10,8 +11,16 @@ def home():
 
 @app.route('/items')
 def items():
-    itemslist = ["Book", "Mug", "Sticker", "Card", "Spoon"]
-    return render_template('items.html', items=itemslist)
+    items_list = []
+
+    with open("./data/items.json", 'r') as f:
+        rows = json.load(f)
+    for key,value in rows.items():
+        # print(key)
+        # print(value)
+        items_list = value
+
+    return render_template('items.html', items=items_list)
 
 # Set debug=True for the server to auto-reload when there are changes
 if __name__ == '__main__':
