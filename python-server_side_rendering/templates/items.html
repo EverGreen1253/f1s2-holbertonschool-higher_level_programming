@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Flask App - Task 02</title>
+    <title>My Flask App - Items List</title>
     <style>
         html, body {
             text-align: center;
@@ -12,17 +12,20 @@
         }
 
         body > .main {
+            width: 400px;
+            margin: 0 auto;
             background-color: #99FFFF;
             padding: 20px 0 40px 0;
         }
 
-        body > .main > span {
+        body > .main > li {
             padding: 10px;
-            margin: 0 5px;
+            margin: 10px;
             background-color: #FFC;
             box-shadow: 3px 3px 3px #666;
             border-radius: 5px;
             border: 1px solid #999;
+            list-style: none;
         }
 
         header {
@@ -43,16 +46,16 @@
 <body>
     {% include 'header.html' %}
     <h1>Welcome to SSR!</h1>
-    <div class="main">
+    <ul class="main">
         <h2>List of items</h2>
         {% if items|length == 0 %}
             No items found
         {% else %}
             {% for item in items %}
-            <span>{{item}}</span>
+            <li>{{item}}</li>
             {% endfor %}
         {% endif %}
-    </div>
+    </ul>
     {% include 'footer.html' %}
 </body>
 </html>
