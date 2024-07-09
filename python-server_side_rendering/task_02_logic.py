@@ -16,8 +16,6 @@ def items():
     with open("items.json", 'r') as f:
         rows = json.load(f)
     for key,value in rows.items():
-        # print(key)
-        # print(value)
         items_list = value
 
     return render_template('items.html', items=items_list)

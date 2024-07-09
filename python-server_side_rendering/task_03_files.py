@@ -15,11 +15,9 @@ def home():
 def items():
     items_list = []
 
-    with open("./data/items.json", 'r') as f:
+    with open("items.json", 'r') as f:
         rows = json.load(f)
     for key,value in rows.items():
-        # print(key)
-        # print(value)
         items_list = value
 
     return render_template('items.html', items=items_list)
@@ -31,9 +29,9 @@ def products():
 
     data = []
     if source == "json":
-        data = load_json_data("data/products.json", id)
+        data = load_json_data("products.json", id)
     elif source == "csv":
-        data = load_csv_data("data/products.csv", id)
+        data = load_csv_data("products.csv", id)
 
     return render_template('product_display.html', data=data, source=source, id=id)
 
