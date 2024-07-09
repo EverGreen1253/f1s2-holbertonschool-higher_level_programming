@@ -13,7 +13,7 @@ def home():
 def items():
     items_list = []
 
-    with open("./data/items.json", 'r') as f:
+    with open("items.json", 'r') as f:
         rows = json.load(f)
     for key,value in rows.items():
         # print(key)
