@@ -7,7 +7,7 @@ import sys
 def generate_invitations(template_content, attendees):
     """ replaces the curly brace vars in 'template_content' with approriate values from 'attendees' """
 
-    if not isinstance(template_content, str):
+    if not isinstance(template_content, str) or not isinstance(attendees, list):
         sys.exit()
 
     # remove whitespace from either end of template_content
