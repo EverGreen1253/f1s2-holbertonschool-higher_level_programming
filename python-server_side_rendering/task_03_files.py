@@ -46,8 +46,10 @@ def load_json_data(filename, wanted_id = None):
     try:
         with open(filename, 'r') as f:
             rows = json.load(f)
+
         for row in rows:
-            key = row['id']
+            # Typecast!!!!!!!
+            key = str(row['id'])
 
             if (wanted_id is not None and key == wanted_id) or (wanted_id is None):
                 product = {}
