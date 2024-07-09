@@ -30,11 +30,11 @@ def products():
 
     data = []
     if source == "json":
-        data = load_json_data("data/products.json", id)
+        data = load_json_data("products.json", id)
     elif source == "csv":
-        data = load_csv_data("data/products.csv", id)
+        data = load_csv_data("products.csv", id)
     elif source == "sql":
-        sql_filepath = "data/products.db"
+        sql_filepath = "products.db"
         # create sqlite file if it doesn't exist yet
         if not Path(sql_filepath).is_file():
             create_sql_data(sql_filepath)
