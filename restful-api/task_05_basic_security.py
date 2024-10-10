@@ -1,56 +1,20 @@
-#!/usr/bin/python3
-""" Nameless Module for Task 5 """
-
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended.exceptions import NoAuthorizationError, InvalidHeaderError
 
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = "i-love-anime-and-video-games"
+app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
+
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
 users = {
-    "user1": {
-        "username": "user1",
-        "password": generate_password_hash("password"),
-        "role": "user"
-    },
-    "admin1": {
-        "username": "admin1",
-        "password": generate_password_hash("password"),
-        "role": "admin"
-    }
+    "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
+    "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
 }
-
-@app.route("/")
-def home():
-    """ Prints welcome string """
-    return "Welcome to the Flask API!"
-
-@app.route("/login", methods=["POST"])
-def login():
-    """ login """
-    # -- Usage example --
-    # curl -X POST localhost:5000/login /
-    #  -H "Content-Type: application/json" /
-    #  -d '{"username":"user1","password":"1234"}'
-
-    if request.get_json() is None:
-        abort(400, "Not a JSON")
-
-    data = request.get_json()
-
-    for k in ["username", "password"]:
-        if k not in data:
-            abort(400, "Missing attribute {}.".format(k))
-
-    if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
-        return jsonify({"msg": "Bad username or password"}), 401
-
-    access_token = create_access_token(identity=data["username"])
-    return jsonify({"access_token": access_token})
 
 @auth.verify_password
 def verify_password(username, password):
@@ -63,20 +27,28 @@ def verify_password(username, password):
 def basic_protected():
     return "Basic Auth: Access Granted"
 
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    user = users.get(username)
+    if user and check_password_hash(user['password'], password):
+        access_token = create_access_token(identity={"username": username, "role": user['role']})
+        return jsonify(access_token=access_token)
+    return jsonify({"error": "Invalid credentials"}), 401
+
 @app.route('/jwt-protected')
 @jwt_required()
 def jwt_protected():
     return "JWT Auth: Access Granted"
 
-@app.route("/admin-only")
+@app.route('/admin-only')
 @jwt_required()
 def admin_only():
-    """ Only for admin role users """
     current_user = get_jwt_identity()
-
-    if current_user not in users or users[current_user]["role"] != "admin":
+    if current_user['role'] != 'admin':
         return jsonify({"error": "Admin access required"}), 403
-
     return "Admin Access: Granted"
 
 # Custom error handlers for JWT errors
@@ -100,5 +72,5 @@ def handle_revoked_token_error(err):
 def handle_needs_fresh_token_error(err):
     return jsonify({"error": "Fresh token required"}), 401
 
-if __name__ == "__main__":
-    app.run(host='localhost', port=5000, debug=True)
+if __name__ == '__main__':
+    app.run()
