@@ -29,6 +29,17 @@ def home():
     """ Prints welcome string """
     return "Welcome to the Flask API!"
 
+@auth.verify_password
+def verify_password(username, password):
+    user = users.get(username)
+    if user and check_password_hash(user['password'], password):
+        return user
+
+@app.route('/basic-protected')
+@auth.login_required
+def basic_protected():
+    return "Basic Auth: Access Granted"
+
 @app.route("/login", methods=["POST"])
 def login():
     """ login """
@@ -51,17 +62,6 @@ def login():
 
     access_token = create_access_token(identity=data["username"])
     return jsonify({"access_token": access_token})
-
-@auth.verify_password
-def verify_password(username, password):
-    user = users.get(username)
-    if user and check_password_hash(user['password'], password):
-        return user
-
-@app.route('/basic-protected')
-@auth.login_required
-def basic_protected():
-    return "Basic Auth: Access Granted"
 
 @app.route('/jwt-protected')
 @jwt_required()
