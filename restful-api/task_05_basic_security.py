@@ -1,19 +1,29 @@
-from flask import Flask, jsonify, request
+#!/usr/bin/python3
+""" Nameless Module for Task 5 """
+
+from flask import Flask, jsonify, request, abort
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-from flask_jwt_extended.exceptions import NoAuthorizationError, InvalidHeaderError
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
+app.config['JWT_SECRET_KEY'] = "i-love-fish-and-chips"
 
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
 users = {
-    "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
-    "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
+    "user1": {
+        "username": "user1",
+        "password": generate_password_hash("password"),
+        "role": "user"
+    },
+    "admin1": {
+        "username": "admin1",
+        "password": generate_password_hash("password"),
+        "role": "admin"
+    }
 }
 
 @auth.verify_password
@@ -29,14 +39,33 @@ def basic_protected():
 
 @app.route('/login', methods=['POST'])
 def login():
+    """ login """
+    # -- Usage example --
+    # curl -X POST localhost:5000/login -H "Content-Type: application/json" -d '{"username":"user1","password":"1234"}'
+
+    # data = request.get_json()
+    # username = data.get('username')
+    # password = data.get('password')
+    # user = users.get(username)
+    # if user and check_password_hash(user['password'], password):
+    #     access_token = create_access_token(identity={"username": username, "role": user['role']})
+    #     return jsonify(access_token=access_token)
+    # return jsonify({"error": "Invalid credentials"}), 401
+
+    if request.get_json() is None:
+        abort(400, "Not a JSON")
+
     data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-    user = users.get(username)
-    if user and check_password_hash(user['password'], password):
-        access_token = create_access_token(identity={"username": username, "role": user['role']})
-        return jsonify(access_token=access_token)
-    return jsonify({"error": "Invalid credentials"}), 401
+
+    for k in ["username", "password"]:
+        if k not in data:
+            abort(400, "Missing attribute {}.".format(k))
+
+    if data["username"] not in users or not check_password_hash(users[data["username"]]["password"], data["password"]):
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    access_token = create_access_token(identity=data["username"])
+    return jsonify({"access_token": access_token})
 
 @app.route('/jwt-protected')
 @jwt_required()
@@ -46,10 +75,19 @@ def jwt_protected():
 @app.route('/admin-only')
 @jwt_required()
 def admin_only():
+    """ Only for admin role users """
+    # current_user = get_jwt_identity()
+    # if current_user['role'] != 'admin':
+    #     return jsonify({"error": "Admin access required"}), 403
+    # return "Admin Access: Granted"
+
     current_user = get_jwt_identity()
-    if current_user['role'] != 'admin':
+
+    if current_user not in users or users[current_user]["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
+
     return "Admin Access: Granted"
+
 
 # Custom error handlers for JWT errors
 @jwt.unauthorized_loader
