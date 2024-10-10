@@ -33,9 +33,7 @@ def home():
 def login():
     """ login """
     # -- Usage example --
-    # curl -X POST localhost:5000/login /
-    #  -H "Content-Type: application/json" /
-    #  -d '{"username":"user1","password":"1234"}'
+    # curl -X POST localhost:5000/login -H "Content-Type: application/json" -d '{"username":"user1","password":"password"}'
 
     if request.get_json() is None:
         abort(400, "Not a JSON")
@@ -101,4 +99,5 @@ def handle_needs_fresh_token_error(err):
     return jsonify({"error": "Fresh token required"}), 401
 
 if __name__ == "__main__":
+    # app.run(host='localhost', port=5000, debug=True)
     app.run()
