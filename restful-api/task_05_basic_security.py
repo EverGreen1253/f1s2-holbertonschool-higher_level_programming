@@ -7,6 +7,7 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your_secret_key'
 app.config["JWT_SECRET_KEY"] = "i-love-anime-and-video-games"
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
@@ -23,11 +24,6 @@ users = {
         "role": "admin"
     }
 }
-
-@app.route("/")
-def home():
-    """ Prints welcome string """
-    return "Welcome to the Flask API!"
 
 @auth.verify_password
 def verify_password(username, password):
