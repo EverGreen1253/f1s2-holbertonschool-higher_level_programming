@@ -7,7 +7,6 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key'
 app.config["JWT_SECRET_KEY"] = "i-love-anime-and-video-games"
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
@@ -25,16 +24,10 @@ users = {
     }
 }
 
-@auth.verify_password
-def verify_password(username, password):
-    user = users.get(username)
-    if user and check_password_hash(user['password'], password):
-        return user
-
-@app.route('/basic-protected')
-@auth.login_required
-def basic_protected():
-    return "Basic Auth: Access Granted"
+@app.route("/")
+def home():
+    """ Prints welcome string """
+    return "Welcome to the Flask API!"
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -58,6 +51,17 @@ def login():
 
     access_token = create_access_token(identity=data["username"])
     return jsonify({"access_token": access_token})
+
+@auth.verify_password
+def verify_password(username, password):
+    user = users.get(username)
+    if user and check_password_hash(user['password'], password):
+        return user
+
+@app.route('/basic-protected')
+@auth.login_required
+def basic_protected():
+    return "Basic Auth: Access Granted"
 
 @app.route('/jwt-protected')
 @jwt_required()
@@ -97,4 +101,4 @@ def handle_needs_fresh_token_error(err):
     return jsonify({"error": "Fresh token required"}), 401
 
 if __name__ == "__main__":
-    app.run(host='localhost', port=5000, debug=True)
+    app.run()
