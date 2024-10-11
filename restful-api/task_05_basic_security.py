@@ -24,11 +24,23 @@ users = {
     }
 }
 
-@app.route("/")
-def home():
-    """ Prints welcome string """
-    return "Welcome to the Flask API!"
+# 1st endpoint - no JWT needed
+@auth.verify_password
+def verify_password(username, password):
+    # -- Usage example --
+    # curl -X GET "http://localhost:5000/basic-protected" --user user1:password
 
+    user = users.get(username)
+    if user and check_password_hash(user['password'], password):
+        return user
+
+@app.route('/basic-protected')
+@auth.login_required
+def basic_protected():
+    return "Basic Auth: Access Granted"
+
+
+# 2nd endpoint - returns JWT
 @app.route("/login", methods=["POST"])
 def login():
     """ login """
@@ -50,32 +62,32 @@ def login():
     access_token = create_access_token(identity=data["username"])
     return jsonify({"access_token": access_token})
 
-@auth.verify_password
-def verify_password(username, password):
-    user = users.get(username)
-    if user and check_password_hash(user['password'], password):
-        return user
 
-@app.route('/basic-protected')
-@auth.login_required
-def basic_protected():
-    return "Basic Auth: Access Granted"
-
+# 3rd endppoint - uses JWT
 @app.route('/jwt-protected')
 @jwt_required()
 def jwt_protected():
+    # -- Usage example --
+    # curl -X GET “http://localhost:5000/jwt-protected” -H “Authorization: Bearer <token_goes_here>”
+
     return "JWT Auth: Access Granted"
 
+# 4th endpoint - uses JWT
 @app.route("/admin-only")
 @jwt_required()
 def admin_only():
     """ Only for admin role users """
+    # -- Usage example --
+    # curl -X GET “http://localhost:5000/admin-only” -H “Authorization: Bearer <token_goes_here>”
+    # NOTE: the token you use must be from a logged-in 'admin' user
+
     current_user = get_jwt_identity()
 
     if current_user not in users or users[current_user]["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
 
     return "Admin Access: Granted"
+
 
 # Custom error handlers for JWT errors
 @jwt.unauthorized_loader
