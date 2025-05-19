@@ -15,5 +15,10 @@ if (process.argv.length <= 2) {
   }
 
   intList.sort((a, b) => a - b).reverse();
-  console.log(intList[1]);
+
+  if (intList[1]) {
+    console.log(intList[1]);
+  } else {
+    console.log(0);
+  }
 }
