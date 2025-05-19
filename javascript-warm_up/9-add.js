@@ -1,5 +1,7 @@
 #!/usr/bin/node
 
+// For some weird reason, semistandard wants a space between the 
+// function name and the brackets
 function add (a, b) {
   return a + b;
 }
