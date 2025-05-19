@@ -1,7 +1,7 @@
 #!/usr/bin/node
 
 let argList = [];
-let intList = []
+const intList = [];
 
 if (process.argv.length <= 2) {
   console.log(0);
