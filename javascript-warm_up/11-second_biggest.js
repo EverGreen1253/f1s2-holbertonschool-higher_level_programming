@@ -14,6 +14,6 @@ if (process.argv.length <= 2) {
     intList.push(parseInt(v));
   }
 
-  intList.sort().reverse();
+  intList.sort((a, b) => a - b).reverse();
   console.log(intList[1]);
 }
