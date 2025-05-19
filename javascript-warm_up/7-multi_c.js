@@ -1,11 +1,13 @@
 #!/usr/bin/node
 
-let times = parseInt(process.argv[2])
+const times = parseInt(process.argv[2]);
+let count = 0;
 
 if (!isNaN(times)) {
   if (times >= 1) {
-    for (let i of Array(times).keys()) {
-        console.log('C is fun');
+    while (count < times) {
+      console.log('C is fun');
+      count++;
     }
   }
 } else {
