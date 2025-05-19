@@ -1,8 +1,7 @@
 #!/usr/bin/node
 
 let argList = [];
-let largest = 0;
-let secondLargest = 0;
+let intList = []
 
 if (process.argv.length <= 2) {
   console.log(0);
@@ -12,11 +11,9 @@ if (process.argv.length <= 2) {
 
   // Be careful, we're dealing with strings...
   for (const v of argList) {
-    if (parseInt(v) > parseInt(largest)) {
-      secondLargest = largest;
-      largest = v;
-    }
+    intList.push(parseInt(v));
   }
 
-  console.log(secondLargest);
+  intList.sort().reverse();
+  console.log(intList[1]);
 }
